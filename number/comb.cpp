@@ -6,7 +6,7 @@ typedef long long ll;
 const int MAX = 510000;
 const int MOD = (int)1e9+7;
 
-ll fac[MAX], finv[MAX], inv[MAX];
+ll fac[MAX], finv[MAX], inv[MAX]; // a!(fac[a]), (a!)^{-1}(finv[a]), a^{-1}(inv[a])
 
 // テーブルを作る前処理
 void comb_init(){
