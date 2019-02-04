@@ -1,12 +1,12 @@
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 using namespace std;
 
-const int MAX_E=1000;
-const int MAX_V=1000;
+const int MAX_E = 2010;
+const int MAX_V = 1010;
 
 #define INF (1 << 29)
 
-//
+// 頂点と頂点を結ぶ辺についての構造体
 struct edge { int from, to, cost; };
 
 edge es[MAX_E]; // 辺
@@ -14,62 +14,52 @@ edge es[MAX_E]; // 辺
 int d[MAX_V];
 int V, E;
 
-//
-void bellman_ford(int s){
-    //
-    for(int i=0; i<V; i++) d[i]=INF;
-    //
-    d[s] = 0;
-    while(true){
-        bool update=false;
-        //
-        for(int i=0; i<E; i++){
-            //
-            edge e = es[i];
-            cout << d[e.from] <<" "<< d[e.to] <<" "<< e.cost <<"  ";
-            //
-            if(d[e.from] != INF && d[e.to] > d[e.from] + e.cost){
-                //
-                d[e.to] = d[e.from] + e.cost;
-                //
-                update = true;
-            }
-        }
-        cout << endl;
-        //
-        if(!update) break;
-    }
-    
-    cout << d[E-1] << endl;
+//	ベルマンフォード（単一始点最短経路（Negative Edges))
+// 負の閉路が存在したら true を返す
+bool bellman_ford(int s) {
+	int cnt = 0;
+	// 最短距離の初期化
+	for (int i = 0; i<V; i++) d[i] = INF;
+	// 頂点 s への最短距離は0
+	d[s] = 0;
+	while (true) {
+		cnt++;
+		bool update = false;
+		// すべての辺に対して
+		for (int i = 0; i < E; i++) {
+			edge e = es[i];
+			// この時点での e.to へ行くコストより e.from を経由して行く方がコストが小さいとき d[e.to] を更新する
+			if (d[e.from] != INF && d[e.to] > d[e.from] + e.cost) {
+				d[e.to] = d[e.from] + e.cost;
+				// V回目のループで更新が行われた場合、負の閉路が存在する
+				if(cnt == V) return true;
+				update = true;
+			}
+		}
+		// 更新がなければ終了
+		if (!update) break;
+	}
+	return false;
 }
 
-//
-//
-bool find_negative_loop(){
-    //
-    memset(d, 0, sizeof(d));
-    
-    //
-    for(int i=0; i<V; i++){
-        for(int j=0; j<E; j++){
-            edge e = es[j];
-            if(d[e.to]>d[e.from]+e.cost){
-                d[e.to]=d[e.from]+e.cost;
-                
-                // 
-                if(i==V-1) return true;
-            }
-        }
-    }
-    return false;
-}
+int main() {
+	int r;
+	cin >> V >> E >> r;
+	int from, to, cost;
 
-int main(){
-    cin >> V >> E;
-    int from, to, cost;
-    for(int i=0; i<E; i++){
-        cin >> from >> to >> cost;
-        es[i] = (edge){from,to,cost};
-    }
-    bellman_ford(0);
+	for (int i = 0; i<E; i++) {
+		cin >> from >> to >> cost;
+		es[i] = edge{ from, to, cost };
+	}
+
+	if (bellman_ford(r)) {
+		cout << "NEGATIVE CYCLE" << endl;
+	}
+	else {
+		for (int i = 0; i < V; i++) {
+			if(d[i]==INF) cout << "INF" << endl;
+			else cout << d[i] << endl;
+		}
+	}
+
 }
