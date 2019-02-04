@@ -7,7 +7,7 @@ static const long long INFTY = (1LL << 32);
 int n;
 long long d[MAX][MAX];
 
-// ワーシャルフロイド（全点対間最短経路）
+// ワーシャルフロイド（全点対間最短経路(動的計画法)）
 void floyd() {
 	for (int k = 0; k<n; k++) {
 		for (int i = 0; i<n; i++) {
@@ -37,15 +37,6 @@ int main() {
 	}
 
 	floyd();
-
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			if(d[i][j]>=INFTY) cout << "_ ";
-			else cout << d[i][j] <<" ";
-		}
-		cout << endl;
-	}
-	cout << endl;
 
 	// ある頂点からそれ自身への最短距離が負になっていれば負の経路が存在する
 	bool negative = false;
