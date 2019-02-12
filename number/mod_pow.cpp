@@ -3,21 +3,17 @@ using namespace std;
 
 typedef long long ll;
 
-bool is_prime(int n){
-    for(int i=2; i*i<=n; i++){
-        if(n%i==0) return false;
-    }
-    return n != 1;  // 1の場合は例外
-}
+const ll MOD = 1000000007;
 
-ll mod_pow(ll x, ll n, ll mod){
-    ll res=1;
-    while(n>0){
-        if(n&1) res = res*x%mod;  // 最下位ビットが立ってる時にx^(2^i)を掛ける
-        x = x*x%mod;              // xを順次二乗していく
-        n >>= 1;    // 右ビットシフト
-    }
-    return res;
+/* x^nを高速に求める */
+ll mod_pow(ll x, ll n) {
+	ll res = 1;
+	while (n > 0) {
+		if (n & 1) res = res*x%MOD;  // 最下位ビットが立ってる時にx^(2^i)を掛ける
+		x = x*x%MOD;              // xを順次二乗していく
+		n >>= 1;    // 右ビットシフト
+	}
+	return res;
 }
 
 
@@ -26,6 +22,6 @@ int main(){
     cin >> n;
     
     for(ll x=2; x<n; x++){
-        cout << mod_pow(x,n,n) <<" "<< x%n << endl;
+        cout << mod_pow(x,n) <<" "<< x%n << endl;
     }
 }
