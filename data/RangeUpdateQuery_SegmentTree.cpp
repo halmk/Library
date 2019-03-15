@@ -1,4 +1,4 @@
-/* Range Update Query */
+ï»¿/* Range Update Query */
 #include "bits/stdc++.h"
 using namespace std;
 
@@ -9,42 +9,42 @@ const int MAX_N = 1 << 18;
 typedef pair<int,int> P;
 
 int n;
-// Segment-Tree first:ÅŒã‚É•ÏX‚µ‚½”Ô†, second:‚»‚Ì‹æŠÔ‚Ì’l
+// Segment-Tree first:æœ€å¾Œã«å¤‰æ›´ã—ãŸç•ªå·, second:ãã®åŒºé–“ã®å€¤
 P dat[2*MAX_N-1];
 
-// 2‚Ì‚×‚«æ‚Å‰Šú‰»
+// 2ã®ã¹ãä¹—ã§åˆæœŸåŒ–
 void init(int n_) {
 	n=1;
 	while(n < n_) n*=2;
 	for(int i=0; i<2*n-1; i++) dat[i].first = -1, dat[i].second = INT_MAX;
 }
 
-// k ”Ô–Ú‚Ì’l(0-indexed)‚ğ‹‚ß‚é 
-// (—t‚Ì’l‚ªk”Ô–Ú‚Ì’l‚Æ‚ÍŒÀ‚ç‚È‚¢. e‚Ì‹æŠÔ‚ÅÅŒã‚ÉXV‚³‚ê‚½êŠ‚ğ’T‚·)
+// k ç•ªç›®ã®å€¤(0-indexed)ã‚’æ±‚ã‚ã‚‹ 
+// (è‘‰ã®å€¤ãŒkç•ªç›®ã®å€¤ã¨ã¯é™ã‚‰ãªã„. è¦ªã®åŒºé–“ã§æœ€å¾Œã«æ›´æ–°ã•ã‚ŒãŸå ´æ‰€ã‚’æ¢ã™)
 int find(int k) {
-	// —t‚Ìß“_
+	// è‘‰ã®ç¯€ç‚¹
 	k += n-1;
 	P p=dat[k];
 
-	// “o‚è‚È‚ª‚ç‹‚ß‚é
+	// ç™»ã‚ŠãªãŒã‚‰æ±‚ã‚ã‚‹
 	while (k > 0) {
-		// k‚Ìe‚ğ‹‚ß‚é
+		// kã®è¦ªã‚’æ±‚ã‚ã‚‹
 		k = (k-1)/2;
-		// first‚ÌÅ‘å’l‚ğ‹‚ß‚é -> ÅŒã‚É•ÏX‚³‚ê‚½êŠ
+		// firstã®æœ€å¤§å€¤ã‚’æ±‚ã‚ã‚‹ -> æœ€å¾Œã«å¤‰æ›´ã•ã‚ŒãŸå ´æ‰€
 		p = max(p, dat[k]);
 	}
 	return p.second;
 }
 
-// [a,b)‚ğ x ‚É•ÏX‚·‚é. k:ß“_, [l,r)
+// [a,b)ã‚’ x ã«å¤‰æ›´ã™ã‚‹. k:ç¯€ç‚¹, [l,r)
 void update(int a, int b, int k, P p, int l, int r) {
-	// ”ÍˆÍŠO‚È‚çreturn
+	// ç¯„å›²å¤–ãªã‚‰return
 	if(r <= a || b <= l) return;
-	// [l,r)‚ª[a,b)‚Ì‹æŠÔ‚ÉŠ®‘S‚ÉŠÜ‚Ü‚ê‚é‚È‚ç‚»‚Ìß“_‚ğ p ‚ğ‚·‚é
+	// [l,r)ãŒ[a,b)ã®åŒºé–“ã«å®Œå…¨ã«å«ã¾ã‚Œã‚‹ãªã‚‰ãã®ç¯€ç‚¹ã‚’ p ã‚’ã™ã‚‹
 	if (a <= l && r <= b) {
 		dat[k] = p;
 	}
-	// ‚»‚êˆÈŠO‚È‚çA‚Q‚Â‚Ìq‚ÉˆÚ‚é
+	// ãã‚Œä»¥å¤–ãªã‚‰ã€ï¼’ã¤ã®å­ã«ç§»ã‚‹
 	else {
 		update(a,b,k*2+1,p,l,(l+r)/2);
 		update(a,b,k*2+2,p,(l+r)/2,r);
