@@ -37,36 +37,15 @@ bool isBracket(string s){
         }
     }
 
-    // 両方ともに消されなかった括弧がある場合はfalse
-    if(cnt1>0 && cnt2>0) return false;
+    // 消されなかった括弧がある場合はfalse
+    if(cnt1>0 || cnt2>0) return false;
     else return true;
 }
 
 signed main(){
-    int n;
-    cin >> n;
-    vector<string> s(n);
-    for(int i=0; i<n; i++) cin >> s[i];
+    string s = ")()", t = "(()())";
 
-    vector<int> vcl(MAX), vcr(MAX);
-    for(int i=0; i<n; i++){
-        int v = isBracket(s[i]);
-        if(v==INF) continue;
-        if(v==0){
-            vcr[v]++;
-            vcl[v]++;
-        }
-        else if(v>0) vcr[v]++;
-        else if(v<0) vcl[abs(v)]++;
-    }
-
-    int ans=0;
-    for(int i=0; i<MAX; i++){
-        //debug3arg(i, vcl[i], vcr[i]);
-        ans += vcl[i]*vcr[i];
-    }
-
-    cout << ans << endl;
-
+    cout << isBracket(s) << endl;
+    cout << isBracket(t) << endl;
 
 }
