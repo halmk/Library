@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "vector": "cpp",
+        "bitset": "cpp",
+        "ostream": "cpp",
+        "xtree": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp",
+        "valarray": "cpp",
+        "xstring": "cpp"
+    },
+    "codingTracker.localServerMode": false
+}
