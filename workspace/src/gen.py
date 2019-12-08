@@ -44,6 +44,7 @@ if __name__ == '__main__':
 
         # 入力フォーマットに合わせてケースを生成する (生成したいフォーマットを別モジュールからimportしたい..)
         input = ""
+        '''
         n_lim = [900000,1000000]
         n = random.randint(n_lim[0],n_lim[1])
         print(n)
@@ -55,6 +56,25 @@ if __name__ == '__main__':
         #print(" ".join(map(str,a_list)))
         input += " ".join(map(str,a_list))
         print()
+        '''
+        n_lim = [1, 3000]
+        n = random.randint(n_lim[0], n_lim[1])
+        input += str(n) + '\n'
+        print(str(n))
+        x_lim = [1, 100000]
+        x = random.randint(x_lim[0], x_lim[1])
+        input += str(x) + '\n'
+        print(str(x))
+        range_lim = [1, 100000]
+        c_lim = [1,10000]
+        for _ in range(n):
+            a = random.randint(range_lim[0],range_lim[1])
+            b = random.randint(range_lim[0],range_lim[1])
+            l = min(a,b)
+            r = max(a,b)
+            x = random.randint(c_lim[0],c_lim[1])
+            input += f'{l} {r} {x}' + '\n'
+            #print(f'{l} {r} {x}')
 
         # 生成したケースを標準入力として実行する.
         main_start = time.time()
@@ -80,6 +100,7 @@ if __name__ == '__main__':
                 break
         else:
             print('OK.')
+            #break
             continue
         # WA が見つかったら中断
         break

@@ -11,49 +11,36 @@ using namespace std;
 #define INF (1LL << 60)
 const int MOD = (int)1e9 + 7;
 
-// 約数の列挙O(√n)
-vector<int> divisor(int n){
-    vector<int> res;
-    for(int i=1; i*i<=n; i++){
-        if(n%i==0){
-            res.push_back(i);
-            // n の約数が i の時、n/i も n の約数になる
-            if(i!=n/i) res.push_back(n/i);
-        }
-    }
-    return res;
-}
+struct INFO {
+    int first;
+    int last;
+    int cost;
+};
 
 signed main(){
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for(int i=0; i<n; i++) scanf("%lld", &a[i]);
-    vector<bool> f(MAX_N, false);
+    int n, x;
+    cin >> n >> x;
+    vector<INFO> vc;
+    for(int i=0; i<n; i++) {
+        int l, r, c;
+        cin >> l >> r >> c;
+        vc.push_back({l,r,c});
+    }
+
+    int mn=INF;
+    bool F=false;
     for(int i=0; i<n; i++){
-        f[a[i]] = true;
-    }
-
-    int dp[MAX_N];
-    for(int i=0; i<MAX_N; i++) dp[i]=0;
-
-    for(int i=0; i<MAX_N; i++){
-        if(!f[i]) continue;
-        vector<int> dv = divisor(i);
-        for(int j=0; j<dv.size(); j++){
-            dp[i] = max(dp[i], dp[dv[j]]);
+        for(int j=i+1; j<n; j++){
+            int d1 = vc[i].last-vc[i].first+1;
+            int d2 = vc[j].last-vc[j].first+1;
+            if(vc[i].last < vc[j].first || vc[j].last < vc[i].first){
+                if(d1+d2==x){
+                    F=true;
+                    mn = min(mn, vc[i].cost+vc[j].cost);
+                }
+            }
         }
-        //DEBUG(i);
-        //DEBUGVC(dv);
-        dp[i]++;
     }
 
-    //for(int i=0; i<30; i++) printf("%2lld ", i); puts("");
-    //for(int i=0; i<30; i++) printf("%2lld ", dp[i]); puts("");
-
-    int mx = 0;
-    for(int i=0; i<MAX_N; i++) mx = max(mx, dp[i]);
-
-    cout << mx << endl;
-
+    cout << (F?mn:-1) << endl;
 }
