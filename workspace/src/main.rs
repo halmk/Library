@@ -1,5 +1,7 @@
 use std::io::*;
 use std::str::FromStr;
+use std::char::*;
+use std::cmp::*;
 
 fn read<T: FromStr>() -> T {
     let stdin = stdin();
@@ -13,6 +15,12 @@ fn read<T: FromStr>() -> T {
     token.parse().ok().expect("failed to parse token")
 }
 
+//const MAX:usize = 100006;
+
+
 fn main(){
+    let n:i32 = read();
+    let a:Vec<(i32,i32)> = (0..n).map(|_| (read(),read())).collect();
+
     
 }

@@ -1,6 +1,6 @@
 use std::io::*;
 use std::str::FromStr;
-use std::cmp::*;
+//use std::cmp::*;
 
 fn read<T: FromStr>() -> T {
     let stdin = stdin();
@@ -14,10 +14,23 @@ fn read<T: FromStr>() -> T {
     token.parse().ok().expect("failed to parse token")
 }
 
+const MAX: usize = 100000;
+
+
+fn fib(x: usize, memo: &mut Vec<usize>) -> usize {
+    if x < 2 { return 1; }
+    if memo[x] != 0 {
+        return memo[x];
+    }
+    memo[x] = fib(x-1,memo) + fib(x-2,memo);
+    return memo[x];
+}
+
 fn main(){
-    use std::collections::BTreeSet;
-    let v = vec![1, 2, 2, 3, 4, 4];
-    println!("{:?}", v.iter().cloned());
-    let a: BTreeSet<u32> = v.iter().cloned().collect();
-    println!("{:?}", a);
+    let n:usize = read();
+
+    let mut memo: Vec<usize> = vec![0;MAX];
+    let res = fib(n, &mut memo);
+
+    println!("{}", res);
 }
