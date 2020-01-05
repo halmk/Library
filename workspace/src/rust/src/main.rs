@@ -2,44 +2,39 @@
 use std::char::*;
 #[allow(unused_imports)]
 use std::cmp::*;
-use std::io::*;
-use std::str::FromStr;
+#[allow(unused_imports)]
+use std::collections::*;
 
-fn read<T: FromStr>() -> T {
-    let stdin = stdin();
-    let stdin = stdin.lock();
-    let token: String = stdin
-        .bytes()
-        .map(|c| c.expect("failed to read char") as char)
-        .skip_while(|c| c.is_whitespace())
-        .take_while(|c| !c.is_whitespace())
-        .collect();
-    token.parse().ok().expect("failed to parse token")
-}
-
-//const MAX:usize = 100006;
-//const INF:u64 = u64::max_value();
+#[allow(unused_macros)]
+macro_rules! debug {($($a:expr),*) => {println!(concat!($(stringify!($a), " = {:?}, "),*), $($a),*);}}
+#[allow(unused_macros)]
+macro_rules! input { ( source = $ s : expr , $ ( $ r : tt ) * ) => { let mut iter = $ s . split_whitespace ( ) ; let mut next = || { iter . next ( ) . unwrap ( ) } ; input_inner ! { next , $ ( $ r ) * } } ; ( $ ( $ r : tt ) * ) => { let stdin = std :: io :: stdin ( ) ; let mut bytes = std :: io :: Read :: bytes ( std :: io :: BufReader :: new ( stdin . lock ( ) ) ) ; let mut next = move || -> String { bytes . by_ref ( ) . map ( | r | r . unwrap ( ) as char ) . skip_while ( | c | c . is_whitespace ( ) ) . take_while ( | c |! c . is_whitespace ( ) ) . collect ( ) } ; input_inner ! { next , $ ( $ r ) * } } ; }
+#[allow(unused_macros)]
+macro_rules! input_inner { ( $ next : expr ) => { } ; ( $ next : expr , ) => { } ; ( $ next : expr , $ var : ident : $ t : tt $ ( $ r : tt ) * ) => { let $ var = read_value ! ( $ next , $ t ) ; input_inner ! { $ next $ ( $ r ) * } } ; }
+#[allow(unused_macros)]
+macro_rules! read_value { ( $ next : expr , ( $ ( $ t : tt ) ,* ) ) => { ( $ ( read_value ! ( $ next , $ t ) ) ,* ) } ; ( $ next : expr , [ $ t : tt ; $ len : expr ] ) => { ( 0 ..$ len ) . map ( | _ | read_value ! ( $ next , $ t ) ) . collect ::< Vec < _ >> ( ) } ; ( $ next : expr , chars ) => { read_value ! ( $ next , String ) . chars ( ) . collect ::< Vec < char >> ( ) } ; ( $ next : expr , usize1 ) => { read_value ! ( $ next , usize ) - 1 } ; ( $ next : expr , $ t : ty ) => { $ next ( ) . parse ::<$ t > ( ) . expect ( "Parse error" ) } ; }
 
 #[derive(PartialEq, PartialOrd)]
 pub struct Total<T>(pub T);
-
 impl<T: PartialEq> Eq for Total<T> {}
+impl<T: PartialOrd> Ord for Total<T> { fn cmp(&self, other: &Total<T>) -> std::cmp::Ordering { self.0.partial_cmp(&other.0).unwrap() }}
 
-impl<T: PartialOrd> Ord for Total<T> {
-    fn cmp(&self, other: &Total<T>) -> std::cmp::Ordering {
-        self.0.partial_cmp(&other.0).unwrap()
-    }
-}
+#[allow(dead_code)]
+const MAX:usize = 100006;
+#[allow(dead_code)]
+const INF_U32:u32 = 1 << 31;
+#[allow(dead_code)]
+const INF_I32:i32 = 1 << 30;
+#[allow(dead_code)]
+const INF_U64:u64 = 1 << 63;
+#[allow(dead_code)]
+const INF_I64:i64 = 1 << 62;
+#[allow(dead_code)]
+const MOD:i64 = 1e9 as i64 + 7;
+
 
 fn main() {
-    let n:u32 = read();
-    let mut v:Vec<f64> = (0..n).map(|_| read::<f64>()).collect();
 
-    v.sort_by_key(|&x| Total(x));
-    v.reverse();
-    println!("{:?}", v);
-
-    for i in 0..n-1 {
-        
-    }
 }
+
+
