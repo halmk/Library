@@ -13,6 +13,7 @@ const int MOD = (int)1e9+7;
 
 
 signed main(){
-    
-    
+    int a;
+    cin >> a;
+    cout << a << endl;
 }
