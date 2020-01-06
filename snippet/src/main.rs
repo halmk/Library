@@ -27,6 +27,10 @@ fn rec_file_search(path: String, mut files: &mut HashSet<String>) {
     }
 }
 
+const SNIPPET_START:&str =  "/* snippet part start */";
+const SNIPPET_END:&str = "/* snippet part end */";
+const CPP_SNIPPET_PATH:&str = "../.vscode/cpp.code_snippets";
+
 fn main() {
     // Get current path
     let path = env::current_dir().unwrap();
@@ -64,10 +68,10 @@ fn main() {
         let rows:Vec<_> = contents.split("\r\n").collect();
         let mut flag = false;
         for row in rows {
-            if row == "/* snippet part end */" { break; }
+            if row == SNIPPET_END { break; }
             if flag { body.push(row.to_string()); }
             //println!("{}", row);
-            if row == "/* snippet part start */" { flag = true; }
+            if row == SNIPPET_START { flag = true; }
         }
 
         // Create Snippet instance
@@ -82,10 +86,12 @@ fn main() {
     let json = jsonway::object(|json| {
         for snippet in snippets {
             let Snippet{name, prefix, body, description} = snippet;
+            println!("\n[name: {}, prefix: {}, description: {}]", name, prefix, description);
             json.object(name, |json| {
                 json.set("prefix", prefix);
                 json.array("body", |json| {
                     for row in body {
+                        println!("{}", row);
                         json.push(row);
                     }
                 });
@@ -94,10 +100,10 @@ fn main() {
         }
     }).unwrap();
 
-    println!("{}", json);
+    //println!("{}", json);
 
     // Write in json file
-    let mut file = File::create("snippet.json").unwrap();
+    let mut file = File::create(CPP_SNIPPET_PATH).unwrap();
     file.write_all(serde_json::to_string(&json).unwrap().as_bytes());
 
 }
