@@ -1,10 +1,10 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
 
+/* snippet part start */
 static const int MAX = 100000;
-static const int INF = (1 << 29);
 
 vector<int> G[MAX];	// 隣接リスト
 list<int> out;	// トポロジカルソートした結果を格納するリスト
@@ -22,6 +22,7 @@ void dfs(int u) {
 	}
 	out.push_front(u);
 }
+/* snippet part end */
 
 int main() {
 	int s, t, M;
@@ -41,7 +42,7 @@ int main() {
 			dfs(i);
 		}
 	}
-	
+
 	for (list<int>::iterator it = out.begin(); it != out.end(); it++) {
 		cout << *it << endl;
 	}

@@ -1,3 +1,4 @@
+/* snippet ignore */
 #include <bits/stdc++.h>
 using namespace std;
 

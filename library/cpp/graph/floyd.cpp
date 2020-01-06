@@ -1,6 +1,7 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
+/* snippet part start */
 static const int MAX = 100;
 static const long long INFTY = (1LL << 32);
 
@@ -20,6 +21,7 @@ void floyd() {
 		}
 	}
 }
+/* snippet part end */
 
 int main() {
 	int e, u, v, c;

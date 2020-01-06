@@ -7,6 +7,7 @@ using namespace std;
 #define INF (1LL << 60)
 const int MOD = (int)1e9 + 7;
 
+/* snippet part start */
 vector<double> a(10);
 
 double f(double x, int dm){
@@ -42,6 +43,7 @@ double newton(double x0, double eps, int dm){
         x0 = x1;
     }
 }
+/* snippet part end */
 
 signed main(){
     double x0=1.0e6, eps=1.0e-6, dm;

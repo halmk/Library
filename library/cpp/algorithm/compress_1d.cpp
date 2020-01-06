@@ -1,8 +1,9 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
 
+/* snippet part start */
 vector<int> compress(vector<int> a) {
 	vector<int> b = a, res;
 	sort(b.begin(), b.end());
@@ -14,6 +15,7 @@ vector<int> compress(vector<int> a) {
 
 	return res;
 }
+/* snippet part end */
 
 int main() {
 	int N; cin >> N;
@@ -21,7 +23,7 @@ int main() {
 	for (int i = 0; i < N; i++) {
 		cin >> a[i];
 	}
-	
+
 	vector<int> b = compress(a);
 	for(int x:b) cout << x <<" "; cout << endl;
 

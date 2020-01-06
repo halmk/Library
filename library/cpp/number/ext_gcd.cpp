@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/* snippet part start */
 int extgcd(int a, int b, int& x, int& y){
     int d = a;
     if(b != 0){
@@ -12,6 +13,7 @@ int extgcd(int a, int b, int& x, int& y){
     }
     return d;
 }
+/* snippet part end */
 
 int main(){
     int a, b, x, y, d;

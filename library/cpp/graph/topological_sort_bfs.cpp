@@ -1,8 +1,9 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
 
+/* snippet part start */
 static const int MAX = 100000;
 static const int INF = (1 << 29);
 
@@ -61,6 +62,7 @@ void tsort() {
 		cout << *it << endl;
 	}
 }
+/* snippet part end */
 
 int main() {
 	int s, t, M;

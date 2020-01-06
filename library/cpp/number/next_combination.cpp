@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/* snippet part start */
 int next_combination(int sub){
     int x = sub & -sub, y = sub + x;
     return (((sub & ~y) / x) >> 1) | y;
@@ -9,7 +10,7 @@ int next_combination(int sub){
 int main() {
     int n=5;
     int k=3;
-    
+
     int bit = (1<<k)-1;
     for(;bit < (1<<n); bit = next_combination(bit)){
         vector<int> S;
@@ -18,7 +19,7 @@ int main() {
                 S.push_back(i);
             }
         }
-        
+
         cout << bit <<":";
         for(int i=0; i<(int)S.size(); i++){
             cout <<" "<< S[i];
@@ -26,3 +27,4 @@ int main() {
         cout << endl;
     }
 }
+/* snippet part end */

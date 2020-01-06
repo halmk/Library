@@ -1,7 +1,9 @@
-﻿#include "bits/stdc++.h"
+﻿#include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
+
+/* snippet part start */
 static const int MAX_N = 1 << 17;
 
 struct StarrySky {
@@ -42,7 +44,7 @@ struct StarrySky {
 		// 区間外
 		if (r <= a || b <= l) return 0;
 
-		// 区間に完全に含まれる場合 
+		// 区間に完全に含まれる場合
 		if (a <= l && r <= b) return datm[k] + data[k];
 
 		// 子を調べる
@@ -62,6 +64,7 @@ struct StarrySky {
 	}
 
 };
+/* snippet part end */
 
 int main() {
 	int n, q;

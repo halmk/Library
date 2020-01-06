@@ -1,10 +1,12 @@
 ﻿/* Range Update Query */
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
 
 #define INF (1<<20)
+
+/* snippet part start */
 const int MAX_N = 1 << 18;
 typedef pair<int,int> P;
 
@@ -19,7 +21,7 @@ void init(int n_) {
 	for(int i=0; i<2*n-1; i++) dat[i].first = -1, dat[i].second = INT_MAX;
 }
 
-// k 番目の値(0-indexed)を求める 
+// k 番目の値(0-indexed)を求める
 // (葉の値がk番目の値とは限らない. 親の区間で最後に更新された場所を探す)
 int find(int k) {
 	// 葉の節点
@@ -50,6 +52,7 @@ void update(int a, int b, int k, P p, int l, int r) {
 		update(a,b,k*2+2,p,(l+r)/2,r);
 	}
 }
+/* snippet part end */
 
 
 int main() {

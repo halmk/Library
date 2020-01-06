@@ -2,6 +2,7 @@
 using namespace std;
 #define INF (1 << 29)
 
+/* snippet part start */
 struct edge { int to, cost; };
 typedef pair<int, int> P;   // firstは最短距離、secondは頂点の番号
 
@@ -20,7 +21,7 @@ void dijkstra(int s){
     fill(Prev,Prev+V,-1);
     d[s]=0;
     que.push(P(0,s));
-    
+
     while(!que.empty()){
         P p = que.top(); que.pop();
         int v=p.second;
@@ -44,7 +45,8 @@ vector<int> get_path(int t){
     reverse(path.begin(),path.end());
     return path;
 }
+/* snippet part end */
 
 int main(){
-    
+
 }

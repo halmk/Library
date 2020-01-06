@@ -1,7 +1,8 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 #define INF (1 << 29)
 
+/* snippet part start */
 const int MAX_V = 1000;
 
 int cost[MAX_V][MAX_V];	// グラフの隣接行列
@@ -35,7 +36,7 @@ int prim() {
 	}
 	return res;
 }
-
+/* snippet part end */
 
 int main() {
 	cin >> V;

@@ -1,6 +1,7 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
+/* snippet part start */
 int N;
 // bit[1]からbit[N]までを使用
 int bit[1000010];
@@ -20,6 +21,7 @@ int sum(int a) {
 	for (int x = a; x > 0; x -= x & -x) ret += bit[x];
 	return ret;
 }
+/* snippet part end */
 
 int main() {
 	int q;

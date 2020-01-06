@@ -3,10 +3,11 @@ using namespace std;
 
 typedef long long ll;
 
+/* snippet part start */
 const int MAX = 510000;
 const int MOD = (int)1e9+7;
 
-ll fac[MAX], finv[MAX], inv[MAX]; // a!(fac[a]), (a!)^{-1}(finv[a]), a^{-1}(inv[a])
+int fac[MAX], finv[MAX], inv[MAX]; // a!(fac[a]), (a!)^{-1}(finv[a]), a^{-1}(inv[a])
 
 // テーブルを作る前処理
 void comb_init(){
@@ -20,7 +21,7 @@ void comb_init(){
     }
 }
 
-ll comb(int n, int k){
+int comb(int n, int k){
     if(n < k) return 0;
     if(n < 0 || k < 0) return 0;
     return fac[n] * (finv[k] * finv[n-k] % MOD) % MOD;
@@ -29,7 +30,8 @@ ll comb(int n, int k){
 int main() {
     // 前処理
     comb_init();
-    
+
     // 計算例
     cout << comb(4, 2) << endl;
 }
+/* snippet part end */

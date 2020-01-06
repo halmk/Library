@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/* snippet part start */
 const int MAX_V = 10000;
 
 vector<int> G[MAX_V];
@@ -18,6 +19,7 @@ bool dfs(int v, int c){
     // 全ての頂点を塗れたらtrue
     return true;
 }
+/* snippet part end */
 
 int main(){
     cin >> V >> E;
@@ -27,7 +29,7 @@ int main(){
         G[s].push_back(t);
         G[t].push_back(s);
     }
-    
+
     for(int i=0; i<V; i++){
         if(color[i] == 0){
             // まだ頂点iが塗られていなければ1で塗る
@@ -38,6 +40,6 @@ int main(){
         }
     }
     cout << "Yes" << endl;
-    
+
     return 0;
 }

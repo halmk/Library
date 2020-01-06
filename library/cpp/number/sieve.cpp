@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/* snippet part start */
 #define MAX_N (1000000)
 int prime[MAX_N];           // i番目の素数
 bool is_prime[MAX_N+1];     // is_prime[i]がtrueならiは素数
@@ -12,7 +13,7 @@ int sieve(int n){
     for(int i=0; i<=n; i++) is_prime[i] = true;
     // 0と1は排除
     is_prime[0] = is_prime[1] = false;
-    
+
     for(int i=2; i<=n; i++){
         if(is_prime[i]){    // iが素数の時
             prime[p++] = i; // p番目をiとして確定させる
@@ -23,6 +24,7 @@ int sieve(int n){
     }
     return p;
 }
+/* snippet part end */
 
 int main(){
     int n;

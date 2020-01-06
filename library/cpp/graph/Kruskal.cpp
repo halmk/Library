@@ -1,9 +1,10 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 #define MAX 110000
 #define INFTY (1 << 29)
 
+/* snippet part start */
 class DisjointSet {
 public:
 	vector<int> rank, p;
@@ -76,6 +77,7 @@ int kruskal(int N, vector<Edge> edges) {
 	}
 	return totalCost;
 }
+/* snippet part end */
 
 int main() {
 	int N, M, cost;

@@ -11,8 +11,9 @@ using namespace std;
 #define INF (1LL << 60)
 const int MOD = (int)1e9 + 7;
 
+/* snippet part start */
 /* 引数 s がBracket Sequence かどうかを返す O(s.length()) */
-bool isBracket(string s){
+bool is_bracket(string s){
     // 括弧のそれぞれの数をカウント
     int cnt1=0, cnt2=0;
     for(int i=0; i<s.length(); i++){
@@ -41,11 +42,12 @@ bool isBracket(string s){
     if(cnt1>0 || cnt2>0) return false;
     else return true;
 }
+/* snippet part end */
 
 signed main(){
     string s = ")()", t = "(()())";
 
-    cout << isBracket(s) << endl;
-    cout << isBracket(t) << endl;
+    cout << is_bracket(s) << endl;
+    cout << is_bracket(t) << endl;
 
 }

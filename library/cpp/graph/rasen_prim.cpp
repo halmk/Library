@@ -1,8 +1,10 @@
-#include "bits/stdc++.h"
+/* snippet ignore */
+#include <bits/stdc++.h>
 using namespace std;
 
 typedef long long ll;
 
+/* snippet part start */
 static const int MAX = 100;
 static const int INFTY = (1<<21);
 static const int WHITE = 0;
@@ -60,6 +62,7 @@ int prim() {
 
 	return sum;
 }
+/* snippet part end */
 
 int main() {
 	cin >> n;

@@ -1,6 +1,7 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
+/* snippet part start */
 const int MAX_N = 1 << 17;
 
 int n, dat[2 * MAX_N - 1];
@@ -44,6 +45,7 @@ int find(int a, int b, int k, int l, int r) {
 		return min(vl, vr);
 	}
 }
+/* snippet part end */
 
 int main() {
 	int q;

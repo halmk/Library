@@ -3,6 +3,7 @@
 #include<vector>
 using namespace std;
 
+/* snippet part start */
 class Node{
 public:
     int location;
@@ -18,7 +19,7 @@ public:
     bool operator < ( const Point &p) const {
         return id < p.id;
     }
-    
+
     void print() {
         printf("%d\n", id);
     }
@@ -47,18 +48,18 @@ int makeKDTree(int l, int r, int depth){
     T[t].location = mid;
     T[t].l = makeKDTree(l, mid, depth+1);
     T[t].r = makeKDTree(mid+1, r, depth+1);
-    
+
     return t;
 }
 
 void find(int v, int sx, int tx, int sy, int ty, int depth, vector<Point> &ans){
     int x = P[T[v].location].x;
     int y = P[T[v].location].y;
-    
+
     if(sx<=x && x<=tx && sy<=y && y<=ty){
         ans.push_back(P[T[v].location]);
     }
-    
+
     if(depth%2==0){
         if(T[v].l != NIL){
             if(sx<=x) find(T[v].l, sx, tx, sy, ty, depth+1, ans);
@@ -75,6 +76,7 @@ void find(int v, int sx, int tx, int sy, int ty, int depth, vector<Point> &ans){
         }
     }
 }
+/* snippet part end */
 
 int main(){
     int x, y;
@@ -84,11 +86,11 @@ int main(){
         P[i] = Point(i, x, y);
         T[i].l = T[i].r = T[i].p = NIL;
     }
-    
+
     np = 0;
-    
+
     int root = makeKDTree(0, N, 0);
-    
+
     int q;
     scanf("%d", &q);
     int sx, tx, sy, ty;
@@ -103,6 +105,6 @@ int main(){
         }
         printf("\n");
     }
-    
+
     return 0;
 }

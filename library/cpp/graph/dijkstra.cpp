@@ -1,7 +1,8 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 #define INF (1 << 29)
 
+/* snippet part start */
 struct edge { int to, cost; };
 typedef pair<int, int> P;   // firstは最短距離、secondは頂点の番号
 
@@ -35,6 +36,9 @@ void dijkstra(int s) {
 		}
 	}
 }
+/* snippet part end */
+
+
 int main() {
 	cin >> V >> E;
 	for (int i = 0; i < E; i++) {
@@ -44,7 +48,7 @@ int main() {
 		G[s].push_back(edge{ t, cost });
 		G[t].push_back(edge{ s, cost });
 	}
-	
+
 	dijkstra(0);
 	// 処理
 }

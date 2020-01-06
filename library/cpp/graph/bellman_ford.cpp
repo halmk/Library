@@ -1,6 +1,7 @@
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 
+/* snippet part start */
 const int MAX_E = 2010;
 const int MAX_V = 1010;
 
@@ -41,6 +42,7 @@ bool bellman_ford(int s) {
 	}
 	return false;
 }
+/* snippet part end */
 
 int main() {
 	int r;

@@ -12,6 +12,7 @@ using namespace std;
 const int MOD = (int)1e9 + 7;
 
 
+/* snippet part start */
 class  DisjointSet {
     public:
         vector<int> p, siz;
@@ -51,6 +52,7 @@ class  DisjointSet {
             return p[x];
         }
 };
+/* snippet part end */
 
 
 signed main(){
