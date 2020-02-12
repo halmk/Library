@@ -1,0 +1,10 @@
+[dependencies]
+
+[package]
+authors = ['halmk <elle2206@i.softbank.jp>']
+edition = '2018'
+name = 'abc152'
+version = '0.1.0'
+[profile.release]
+lto = true
+panic = 'abort'

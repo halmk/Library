@@ -4,6 +4,7 @@ import sys
 import subprocess
 import re
 import time
+import string
 
 ## パイプの形でコマンドを実行する
 ##   引数 cmd: コマンド文字列（オプションを含んでもよい）
@@ -29,6 +30,8 @@ def run_command_in_pipe(cmd, text):
     # 配列を返す
     return lines
 
+def randomname(n):
+   return ''.join(random.choices(string.ascii_letters, k=n))
 
 # メインの処理
 if __name__ == '__main__':
@@ -57,37 +60,32 @@ if __name__ == '__main__':
         input += " ".join(map(str,a_list))
         print()
         '''
-        n_lim = [1, 3000]
+        n_lim = [1, 100]
         n = random.randint(n_lim[0], n_lim[1])
-        input += str(n) + '\n'
-        print(str(n))
-        x_lim = [1, 100000]
-        x = random.randint(x_lim[0], x_lim[1])
-        input += str(x) + '\n'
-        print(str(x))
-        range_lim = [1, 100000]
-        c_lim = [1,10000]
-        for _ in range(n):
-            a = random.randint(range_lim[0],range_lim[1])
-            b = random.randint(range_lim[0],range_lim[1])
-            l = min(a,b)
-            r = max(a,b)
-            x = random.randint(c_lim[0],c_lim[1])
-            input += f'{l} {r} {x}' + '\n'
+        #input += str(n) + '\n'
+        #print(str(n))
+        range_lim = [1, 1000]
+        #for _ in range(n):
+            #a = random.randint(range_lim[0],range_lim[1])
+            #input += f'{a}'
             #print(f'{l} {r} {x}')
 
+        #print(randomname(n))
+        input += randomname(n) + '\n'
+        input += str(random.randint(1,10000))
+        print(input)
         # 生成したケースを標準入力として実行する.
         main_start = time.time()
-        main_result = run_command_in_pipe('./source.out', input)
+        main_result = run_command_in_pipe('./source', input)
         main_end = time.time()
         print(f'source: {(main_end-main_start)*1000:.2f}ms')
         print('source: ', main_result)
-        
+
         honesty_start = time.time()
-        honesty_result = run_command_in_pipe('./honesty.out', input)
+        honesty_result = run_command_in_pipe('./stupid', input)
         honesty_end = time.time()
-        print(f'test: {(honesty_end-honesty_start)*1000:.2f}ms')
-        print('test: ', honesty_result)
+        print(f'stupid: {(honesty_end-honesty_start)*1000:.2f}ms')
+        print('stupid: ', honesty_result)
 
         # 結果の長さが違うなら,WA
         if len(main_result) != len(honesty_result):

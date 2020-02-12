@@ -27,13 +27,23 @@ const MOD:i64 = 1e9 as i64 + 7;
 const MAX_N:usize = 100;
 const MAX_W:usize = 100;
 
-// 最長共通部分列問題
-// ２つの文字列 s1s2...sn と t1t2...tm が与えられる。これら２つの共通部分文字列の長さの最大値を求める。(LCS: Longest Common Subsequennce)
+// o1ナップサック問題
+// 重さと価値がそれぞれw_i, v_iであるようなn個の品物がある。これらの品物から、重さの総和がWを超えないように選んだときの、価値の総和の最大値を求める。
 
-// dp[i][j] := s1...si と t1...tj に対する LCS の長さ
-
+// dp[i][j] := i番目以降の品物から重さの総和がj以下となるように選んだときの、価値の総和の最大値
 fn main() {
     input!{n:usize, w:[i64;n], v:[i64;n], W:i64};
 
+    let mut dp = [[0;MAX_W+1];MAX_N+1];
 
+    for i in (0..n).rev() {
+        for j in 0..W as usize +1 {
+            if (j as i64) < w[i] {
+                dp[i][j] = dp[i+1][j];
+            } else {
+                dp[i][j] = max(dp[i+1][j], dp[i+1][(j as i64 - w[i]) as usize] + v[i]);
+            }
+        }
+    }
+    println!("{}", dp[0][W as usize]);
 }
