@@ -12,8 +12,17 @@ using namespace std;
 const int MOD = (int)1e9+7;
 
 
-signed main(){
-    int a;
-    cin >> a;
-    cout << a << endl;
+signed main() {
+    int N;
+    cin >> N;
+    for(int i=1; i<=N; i++) {
+        if (i*(i+1)/2 >= N) {
+            int d = (i*(i+1)/2) - N;
+            for(int j=1; j<=i; j++) {
+                if(j == d) { continue; }
+                cout << j << endl;
+            }
+            return 0;
+        }
+    }
 }
