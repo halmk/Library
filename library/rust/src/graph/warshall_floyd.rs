@@ -6,6 +6,7 @@ use std::cmp::min;
 const MAX_V:usize = 100;
 const INF:i64 = std::i64::MAX;
 
+// 全点対間最短経路 O(V^3)
 fn warshall_floyd(n:usize, d: &mut [[i64;MAX_V];MAX_V]) {
     for k in 0..n {
         for i in 0..n {
