@@ -19,7 +19,7 @@ void segment_sieve(int a, int b){
         if(is_prime_small[i]){
             // [2,√b)の表から素数が得られるたびに、その素数の倍数を[a,b)から除く
             for(int j=2*i; j * j <b; j+=i) is_prime_small[j]=false; // [2,√b)の篩
-            for(int j=max(2LL, (a+i-1)/i) * i; j<b; j+=i) is_prime[j-a]=false; // [a,b)の篩
+            for(int j=max(2, (a+i-1)/i) * i; j<b; j+=i) is_prime[j-a]=false; // [a,b)の篩
         }
     }
 }

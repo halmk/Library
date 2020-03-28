@@ -60,20 +60,24 @@ if __name__ == '__main__':
         input += " ".join(map(str,a_list))
         print()
         '''
-        n_lim = [1, 100]
+        n_lim = [1, 1000]
         n = random.randint(n_lim[0], n_lim[1])
         #input += str(n) + '\n'
         #print(str(n))
         range_lim = [1, 1000]
-        #for _ in range(n):
-            #a = random.randint(range_lim[0],range_lim[1])
-            #input += f'{a}'
-            #print(f'{l} {r} {x}')
+        for _ in range(n):
+            a = random.randint(range_lim[0],range_lim[1])
+            input += f'{a} '
 
-        #print(randomname(n))
-        input += randomname(n) + '\n'
-        input += str(random.randint(1,10000))
-        print(input)
+        input += '\n'
+
+        for _ in range(n):
+            b = random.randint(range_lim[0],range_lim[1])
+            input += f'{b} '
+
+        input += '\n'
+
+        #print(input)
         # 生成したケースを標準入力として実行する.
         main_start = time.time()
         main_result = run_command_in_pipe('./source', input)

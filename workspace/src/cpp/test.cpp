@@ -1,7 +1,8 @@
 #include "bits/stdc++.h"
 using namespace std;
 
-#define int long long
+typedef long long Int;
+
 #define MAX_N (200005)
 #define INF (1LL<<60)
 #define EPS (1e-7)
@@ -12,8 +13,11 @@ using namespace std;
 #define DEBUG3(x, y, z) cerr << #x <<" : "<< x <<", "<< #y <<" : "<< y <<", "<< #z <<" : "<< z << endl;
 const int MOD = (int)1e9+7;
 
-signed main() {
-    int a[] = {1,2,3,4,4,4,7,8,9};
+int main() {
+    Int n;
+    cin >> n;
+    cout << n << endl;
+    int a[] = {0,0,0,0,1,1,1,1,2,3,4,4,4,7,8,9,10,11,12,13,14,15};
 	auto cmp = [](pair<int,int> l, pair<int,int> r){
         if(l.first > r.first) return false;
         else if(l.first < r.first) return true;
@@ -23,8 +27,8 @@ signed main() {
         }
     };
     priority_queue<pair<int,int>, vector<pair<int,int>>, decltype(cmp)> pq(cmp);
-    
-    for(int i=0; i<9; i++){
+
+    for(int i=0; i<22; i++){
         pq.push(make_pair(a[i],i));
     }
 

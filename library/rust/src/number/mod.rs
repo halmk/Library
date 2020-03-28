@@ -5,6 +5,7 @@ mod is_prime;
 mod prime_factor;
 mod divisor;
 mod pascal_triangle;
+mod mod_pow;
 mod mod_combination;
 mod extra_gcd;
 mod next_combination;

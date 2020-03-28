@@ -24,6 +24,8 @@ impl<T: PartialOrd> Ord for Total<T> { fn cmp(&self, other: &Total<T>) -> std::c
 #[allow(dead_code)]
 const MAX:usize = 100006;
 #[allow(dead_code)]
+const INF:i64 = std::i64::MAX;
+#[allow(dead_code)]
 const MOD:i64 = 1e9 as i64 + 7;
 
 
@@ -52,13 +54,32 @@ fn read_vec<T: std::str::FromStr>() -> Vec<T> {
 #[allow(unused_imports)]
 use std::f64;
 
+#[allow(dead_code)]
 fn min<T: PartialOrd>(a:T, b:T) -> T {
     if a < b { a }
     else { b }
 }
+#[allow(dead_code)]
+fn max<T: PartialOrd>(a:T, b:T) -> T {
+    if a < b { b }
+    else { a }
+}
 
+use std::hash::Hash;
+#[allow(dead_code)]
+fn inc<T: Hash+Ord>(map:&mut BTreeMap<T,i64>, key:T) {
+    let count = map.entry(key).or_insert(0);
+    *count += 1;
+}
+
+fn int(ch: char) -> i64 {
+    return (ch as u8 - b'0') as i64
+}
 
 fn main() {
-    let mut d = [[INF;MAX_V];MAX_V];
 
 }
+
+/*
+
+*/

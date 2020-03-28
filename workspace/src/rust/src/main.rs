@@ -1,11 +1,12 @@
+#![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(unused_macros)]
-#![allow(dead_code)]
-#![allow(non_snake_case)]
 
 use std::char::*;
 use std::cmp::*;
 use std::collections::*;
+use std::io::*;
+use std::str::FromStr;
 
 macro_rules! debug {($($a:expr),*) => {println!(concat!($(stringify!($a), " = {:?}, "),*), $($a),*);}}
 macro_rules! input { ( source = $ s : expr , $ ( $ r : tt ) * ) => { let mut iter = $ s . split_whitespace ( ) ; let mut next = || { iter . next ( ) . unwrap ( ) } ; input_inner ! { next , $ ( $ r ) * } } ; ( $ ( $ r : tt ) * ) => { let stdin = std :: io :: stdin ( ) ; let mut bytes = std :: io :: Read :: bytes ( std :: io :: BufReader :: new ( stdin . lock ( ) ) ) ; let mut next = move || -> String { bytes . by_ref ( ) . map ( | r | r . unwrap ( ) as char ) . skip_while ( | c | c . is_whitespace ( ) ) . take_while ( | c |! c . is_whitespace ( ) ) . collect ( ) } ; input_inner ! { next , $ ( $ r ) * } } ; }
@@ -17,23 +18,77 @@ pub struct Total<T>(pub T);
 impl<T: PartialEq> Eq for Total<T> {}
 impl<T: PartialOrd> Ord for Total<T> { fn cmp(&self, other: &Total<T>) -> std::cmp::Ordering { self.0.partial_cmp(&other.0).unwrap() }}
 
-const MAX:usize = 100006;
-const INF_U32:u32 = 1 << 31;
-const INF_I32:i32 = 1 << 30;
-const INF_U64:u64 = 1 << 63;
-const INF_I64:i64 = 1 << 62;
+const MAX:usize = 5;
 const MOD:i64 = 1e9 as i64 + 7;
 
-const MAX_N:usize = 100;
-const MAX_W:usize = 100;
 
-// 最長共通部分列問題
-// ２つの文字列 s1s2...sn と t1t2...tm が与えられる。これら２つの共通部分文字列の長さの最大値を求める。(LCS: Longest Common Subsequennce)
+fn read<T: FromStr>() -> T {
+    let stdin = stdin();
+    let stdin = stdin.lock();
+    let token: String = stdin
+        .bytes()
+        .map(|c| c.expect("failed to read char") as char)
+        .skip_while(|c| c.is_whitespace())
+        .take_while(|c| !c.is_whitespace())
+        .collect();
+    token.parse().ok().expect("failed to parse token")
+}
 
-// dp[i][j] := s1...si と t1...tj に対する LCS の長さ
+fn read_vec<T: std::str::FromStr>() -> Vec<T> {
+    let mut s = String::new();
+    std::io::stdin().read_line(&mut s).ok();
+    s.trim().split_whitespace()
+        .map(|e| e.parse().ok().unwrap()).collect()
+}
+
+
+use std::f64;
+
+fn min<T: PartialOrd>(a:T, b:T) -> T {
+    if a < b { a }
+    else { b }
+}
+
+use std::hash::Hash;
+fn inc<T: Hash+Ord>(map:&mut BTreeMap<T,i64>, key:T) {
+    let count = map.entry(key).or_insert(0);
+    *count += 1;
+}
+
+fn mod_pow(x:i64, n:i64, m:i64) -> i64 {
+    let mut x = x;
+    let mut n = n;
+    let mut res = 1i64;
+    while n > 0 {
+        if n & 1 > 0 {
+            res = res * x % m;
+        }
+        x = x * x % m;
+        n >>= 1;
+    }
+    res
+}
+
 
 fn main() {
-    input!{n:usize, w:[i64;n], v:[i64;n], W:i64};
-
-
+    input!{n:usize};
+    let mut ans = 0i64;
+    for i in 1..n+1 {
+       ans += 2i64.pow(i as u32);
+    }
+    println!("{}", ans);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
