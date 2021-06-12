@@ -23,7 +23,7 @@ fn dijkstra(s: usize, G: &Vec<Vec<Edge>>, V: usize) -> Vec<i64> {
         let p = que.pop().unwrap();
         let v = p.1;
         // これまでの頂点vへのコストより距離が大きいならスキップ
-        if d[v] < p.0 { continue; }
+        if d[v] < -p.0 { continue; }
         // 頂点vと隣接している頂点を調べる
         for i in 0..G[v].len() {
             let e = &G[v][i];
